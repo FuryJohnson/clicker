@@ -54,6 +54,7 @@ export const useClicker = ({ initData }: UseClickerProps) => {
       lastServerClicksRef.current = result.clicks;
       setUser((prev) => (prev ? { ...prev, clicks: result.clicks } : null));
       refreshRank();
+      refreshLeaderboard();
     });
 
     commandQueueRef.current = queue;
@@ -61,7 +62,7 @@ export const useClicker = ({ initData }: UseClickerProps) => {
     return () => {
       queue.dispose();
     };
-  }, [initData, refreshRank]);
+  }, [initData, refreshRank, refreshLeaderboard]);
 
   useEffect(() => {
     const init = async () => {
